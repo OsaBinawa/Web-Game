@@ -5,6 +5,9 @@ const carImage = new Image();
 carImage.src = 'images/car.png';
 
 const laneWidth = canvas.width / 3;
+
+
+canvas.height = window.innerHeight;
 const carWidth = 40;
 const carHeight = 80;
 const lanes = [
@@ -58,17 +61,34 @@ function drawCar(x, y) {
     ctx.drawImage(carImage, x, y, carWidth, carHeight);
 }
 
+let dashOffset = 0; // Add this variable at the top of your script
+const laneDashCount = 20; // Number of dashed lines to draw
+const laneDashHeight = 50; // Spacing between each dashed line
+
 function drawLanes() {
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 2;
-    for (let i = 1; i < 3; i++) {
-        let x = laneWidth * i;
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
+    ctx.strokeStyle = "white"; // Set the color for the lane markings
+    ctx.lineWidth = 4; // Set the line width for the markings
+
+    // Define a dashed line pattern
+    ctx.setLineDash([10, 40]); // 15 pixels dash, 10 pixels gap
+
+    // Loop to draw multiple dashed lines
+    for (let i = 0; i < laneDashCount; i++) {
+        let y = (dashOffset + i * laneDashHeight) % canvas.height; // Calculate the Y position with offset
+        for (let j = 1; j < 3; j++) { // Draw for the two lanes
+            let x = laneWidth * j; // Calculate the x position for the lane lines
+            ctx.beginPath();
+            ctx.moveTo(x, y); // Start from the calculated Y position
+            ctx.lineTo(x, y + canvas.height); // Draw down the canvas height
+            ctx.stroke(); // Draw the dashed line
+        }
     }
+
+    // Reset the line dash to solid line (optional)
+    ctx.setLineDash([]); // Resets to solid line
 }
+
+
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -127,6 +147,14 @@ function update(deltaTime) {
     moveObstacles();
     checkCollisions();
 
+    // Update the dashOffset to create the scrolling effect
+    dashOffset += obstacleSpeed; // Move the dashes down at the speed of obstacles
+
+    // Reset dashOffset to create a loop effect
+    if (dashOffset >= laneDashHeight) {
+        dashOffset = 0; // Reset to top once it goes off the defined dash height
+    }
+
     scoreTimer += deltaTime;
     if (scoreTimer >= 1000) { 
         score += 10;  // Increment the score every second
@@ -141,9 +169,10 @@ function update(deltaTime) {
     }
 }
 
+
 function drawScore() {
-    ctx.fillStyle = "black";
-    ctx.font = "20px Arial";
+    ctx.fillStyle = "white";
+    ctx.font = "30px Arial";
     ctx.fillText(`Score: ${score}`, 20, 40);
 }
 

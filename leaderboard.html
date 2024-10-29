@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <h2>Leaderboard</h2>
-    <ul id="leaderboardList"></ul>
-    <label for="playerName">Enter your name:</label>
-    <input type="text" id="playerName">
-    <button id="submitScore">Submit Score</button>
-    <button id="retryGame">Retry</button>
-
+    <div class="wrapper">
+        <div class="leaderboard-container">
+            <h2>Leaderboard</h2>
+            <ul id="leaderboardList"></ul>
+            <label for="playerName">Enter your name:</label>
+            <input type="text" id="playerName">
+            <button id="submitScore">Submit Score</button>
+            <button id="retryGame">Retry</button>
+        </div>
+    </div>
 
     <script>
         // Fetch leaderboard data from localStorage

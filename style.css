@@ -1,18 +1,29 @@
-/* styles.css */
+/* Reset default browser styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 /* General Styles */
-body {
+body, html {
+    height: 100%;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0; /* Light grey background */
-    color: #333; /* Dark grey text */
+    color: #233; /* Dark grey text */
     text-align: center;
 }
 
 /* Game Canvas */
 #gameCanvas {
     border: 2px solid #333; /* Black border for canvas */
-    background-color: #e6e6e6; /* Light grey background for canvas */
+    background-color: #000000; /* Light grey background for canvas */
 }
 
 /* Car Styles */
@@ -30,6 +41,7 @@ body {
     stroke-width: 2; /* Lane width */
 }
 
+/* Obstacle Styles */
 .obstacle {
     position: absolute;
     width: 40px;
@@ -45,85 +57,74 @@ body {
     background-image: url('images/obstacle2.png');
 }
 
-/* Leaderboard Styles */
+/* Leaderboard Container Styling */
+.leaderboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 4px solid #333;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 0; /* Ensure there's no extra margin */
+}
+
+/* Leaderboard List Styling */
 #leaderboardList {
-    list-style-type: none; /* Remove bullets from list */
+    list-style-type: none;
     padding: 0;
-    margin: 20px 0;
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 20px; /* Spacing below the leaderboard list */
 }
 
-/* List Item Styles */
-#leaderboardList li {
-    background-color: #fff; /* White background for list items */
-    border: 1px solid #ccc; /* Light grey border */
-    padding: 10px;
-    margin: 5px 0; /* Space between items */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s; /* Smooth transition for hover */
+/* Name Input Box Styling */
+#playerName {
+    padding: 8px;
+    font-size: 16px;
+    margin: 10px 0;
+    width: calc(100% - 20px);
+    border: 1px solid #333;
+    border-radius: 4px;
+    margin-bottom: 10px; /* Adjust spacing around the input */
 }
 
-/* Hover Effect for List Items */
-#leaderboardList li:hover {
-    background-color: #e0e0e0; /* Darker grey on hover */
-}
-
-/* Input Styles */
-input[type="text"] {
-    padding: 10px; /* Inner padding for input */
-    border: 1px solid #ccc; /* Light grey border */
-    border-radius: 5px; /* Rounded corners */
-    margin-right: 5px; /* Space between input and button */
-}
-
-/* Button Styles */
+/* Button Styling */
 button {
-    padding: 10px 20px; /* Inner padding for buttons */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Change cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition for hover */
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%; /* Full width of the container */
 }
 
-/* Submit Button Styles */
-#submitScore {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text */
-}
-
-/* Retry Button Styles */
-#retryGame {
-    background-color: #007bff; /* Blue background */
-    color: white; /* White text */
-}
-
-/* Button Hover Effects */
 button:hover {
-    opacity: 0.9; /* Slightly reduce opacity on hover */
+    background-color: #0056b3;
 }
 
-/* Game Over Message Styles */
-.game-over {
-    color: red; /* Red text for game over */
-    font-size: 30px; /* Larger font size */
+#retryGame {
+    background-color: #28a745;
 }
 
-/* Score Text Styles */
-.score {
-    font-size: 20px; /* Font size for score display */
-    color: black; /* Black text color */
+#retryGame:hover {
+    background-color: #218838;
 }
 
-/* Responsive Design */
+/* Responsive Layout */
 @media (max-width: 600px) {
-    /* Responsive adjustments */
-    #gameCanvas {
-        width: 100%; /* Full width on smaller screens */
-        height: auto; /* Maintain aspect ratio */
+    .leaderboard-container {
+        width: 100%;
+        padding: 15px;
     }
-
-    input[type="text"],
-    button {
-        width: 100%; /* Full width for input and buttons */
-        margin: 5px 0; /* Space between elements */
+    #leaderboardList {
+        font-size: 16px;
     }
 }
