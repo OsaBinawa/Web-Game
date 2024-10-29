@@ -27,7 +27,7 @@ let obstacleInterval = 1500;
 let score = 0;  
 let scoreTimer = 0;  
 
-// Leaderboard
+
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 
 const obstacleImages = [
@@ -35,18 +35,18 @@ const obstacleImages = [
     new Image()
 ];
 
-obstacleImages[0].src = 'images/obstacle1.png'; // Path to first obstacle image
+obstacleImages[0].src = 'images/obstacle1.png'; 
 obstacleImages[1].src = 'images/obstacle2.png'; 
 
-// Function to update leaderboard
+
 function updateLeaderboard(playerName, score) {
     leaderboard.push({ name: playerName, score });
-    leaderboard.sort((a, b) => b.score - a.score); // Sort by score descending
-    leaderboard = leaderboard.slice(0, 5); // Keep only top 5 scores
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboard)); // Save to localStorage
+    leaderboard.sort((a, b) => b.score - a.score); 
+    leaderboard = leaderboard.slice(0, 5); 
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard)); 
 }
 
-// Function to display leaderboard
+
 function displayLeaderboard() {
     const leaderboardList = document.getElementById("leaderboardList");
     leaderboardList.innerHTML = ""; 
@@ -61,31 +61,31 @@ function drawCar(x, y) {
     ctx.drawImage(carImage, x, y, carWidth, carHeight);
 }
 
-let dashOffset = 0; // Add this variable at the top of your script
-const laneDashCount = 20; // Number of dashed lines to draw
-const laneDashHeight = 50; // Spacing between each dashed line
+let dashOffset = 0; 
+const laneDashCount = 20; 
+const laneDashHeight = 50; 
 
 function drawLanes() {
-    ctx.strokeStyle = "white"; // Set the color for the lane markings
-    ctx.lineWidth = 4; // Set the line width for the markings
+    ctx.strokeStyle = "white"; 
+    ctx.lineWidth = 4; 
 
-    // Define a dashed line pattern
-    ctx.setLineDash([10, 40]); // 15 pixels dash, 10 pixels gap
+    
+    ctx.setLineDash([10, 40]); 
 
-    // Loop to draw multiple dashed lines
+    
     for (let i = 0; i < laneDashCount; i++) {
-        let y = (dashOffset + i * laneDashHeight) % canvas.height; // Calculate the Y position with offset
-        for (let j = 1; j < 3; j++) { // Draw for the two lanes
-            let x = laneWidth * j; // Calculate the x position for the lane lines
+        let y = (dashOffset + i * laneDashHeight) % canvas.height; 
+        for (let j = 1; j < 3; j++) { 
+            let x = laneWidth * j; 
             ctx.beginPath();
-            ctx.moveTo(x, y); // Start from the calculated Y position
-            ctx.lineTo(x, y + canvas.height); // Draw down the canvas height
-            ctx.stroke(); // Draw the dashed line
+            ctx.moveTo(x, y); 
+            ctx.lineTo(x, y + canvas.height); 
+            ctx.stroke(); 
         }
     }
 
-    // Reset the line dash to solid line (optional)
-    ctx.setLineDash([]); // Resets to solid line
+    
+    ctx.setLineDash([]); 
 }
 
 
@@ -98,11 +98,11 @@ function createObstacle() {
     let lane = Math.floor(Math.random() * 3);  
     let obstacleX = lanes[lane];
 
-    // Choose a random image for the obstacle
+    
     const randomImageIndex = Math.floor(Math.random() * obstacleImages.length);
     const selectedImage = obstacleImages[randomImageIndex];
 
-    // Add obstacle with its chosen image and position
+    
     obstacles.push({ 
         x: obstacleX,
         y: -obstacleHeight,
@@ -147,18 +147,18 @@ function update(deltaTime) {
     moveObstacles();
     checkCollisions();
 
-    // Update the dashOffset to create the scrolling effect
-    dashOffset += obstacleSpeed; // Move the dashes down at the speed of obstacles
+    
+    dashOffset += obstacleSpeed; 
 
-    // Reset dashOffset to create a loop effect
+    
     if (dashOffset >= laneDashHeight) {
-        dashOffset = 0; // Reset to top once it goes off the defined dash height
+        dashOffset = 0; 
     }
 
     scoreTimer += deltaTime;
     if (scoreTimer >= 1000) { 
-        score += 10;  // Increment the score every second
-        console.log("Current Score:", score); // Log the current score
+        score += 10;  
+        console.log("Current Score:", score); 
         scoreTimer = 0;
     }
 
@@ -191,7 +191,7 @@ function draw(timestamp) {
         update(deltaTime);  
         requestAnimationFrame(draw); 
     } else {
-        endGame();  // Trigger game over
+        endGame();  
     }
 }
 
@@ -201,14 +201,14 @@ function endGame() {
     ctx.fillText("Game Over!", canvas.width / 3, canvas.height / 2);
     ctx.fillText(`Final Score: ${score}`, canvas.width / 3, canvas.height / 2 + 40);
 
-    // Save the score to sessionStorage for the leaderboard page
-    sessionStorage.setItem("currentScore", score); // Store the score in sessionStorage
-    console.log("Score stored in sessionStorage:", score); // Log the score being stored
+    
+    sessionStorage.setItem("currentScore", score); 
+    console.log("Score stored in sessionStorage:", score); 
 
-    // Redirect to the leaderboard page after a short delay
+    
     setTimeout(() => {
         window.location.href = "leaderboard.html";
-    }, 2000);  // 2-second delay to display "Game Over" message
+    }, 2000);  
 }
 
 requestAnimationFrame(draw);

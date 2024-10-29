@@ -1,4 +1,4 @@
-/* Reset default browser styles */
+
 *,
 *::before,
 *::after {
@@ -7,7 +7,7 @@
     padding: 0;
 }
 
-/* General Styles */
+
 body, html {
     height: 100%;
     margin: 0;
@@ -15,33 +15,33 @@ body, html {
     align-items: center;
     justify-content: center;
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0; /* Light grey background */
-    color: #233; /* Dark grey text */
+    background-color: #000000; 
+    color: #233;
     text-align: center;
 }
 
-/* Game Canvas */
+
 #gameCanvas {
-    border: 2px solid #333; /* Black border for canvas */
-    background-color: #000000; /* Light grey background for canvas */
+    border: 2px solid #333; 
+    background-color: #404040; 
 }
 
-/* Car Styles */
+
 .car {
-    background-image: url('images/car.png'); /* Image of the car */
-    background-size: contain; /* Contain within the specified width and height */
-    width: 40px; /* Set width for car */
-    height: 80px; /* Set height for car */
-    position: absolute; /* Position for dynamic placement */
+    background-image: url('images/car.png'); 
+    background-size: contain; 
+    width: 40px; 
+    height: 80px; 
+    position: absolute;
 }
 
-/* Lane Styles */
+
 .lane {
-    stroke: black; /* Lane color */
-    stroke-width: 2; /* Lane width */
+    stroke: rgb(79, 79, 79); 
+    stroke-width: 2; 
 }
 
-/* Obstacle Styles */
+
 .obstacle {
     position: absolute;
     width: 40px;
@@ -57,7 +57,7 @@ body, html {
     background-image: url('images/obstacle2.png');
 }
 
-/* Leaderboard Container Styling */
+
 .leaderboard-container {
     display: flex;
     flex-direction: column;
@@ -70,19 +70,19 @@ body, html {
     max-width: 400px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 0; /* Ensure there's no extra margin */
+    margin-top: 0; 
 }
 
-/* Leaderboard List Styling */
+
 #leaderboardList {
     list-style-type: none;
     padding: 0;
     width: 100%;
     font-size: 18px;
-    margin-bottom: 20px; /* Spacing below the leaderboard list */
+    margin-bottom: 20px; 
 }
 
-/* Name Input Box Styling */
+
 #playerName {
     padding: 8px;
     font-size: 16px;
@@ -90,10 +90,10 @@ body, html {
     width: calc(100% - 20px);
     border: 1px solid #333;
     border-radius: 4px;
-    margin-bottom: 10px; /* Adjust spacing around the input */
+    margin-bottom: 10px; 
 }
 
-/* Button Styling */
+
 button {
     padding: 10px 15px;
     font-size: 16px;
@@ -103,7 +103,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
-    width: 100%; /* Full width of the container */
+    width: 100%; 
 }
 
 button:hover {
@@ -118,7 +118,7 @@ button:hover {
     background-color: #218838;
 }
 
-/* Responsive Layout */
+
 @media (max-width: 600px) {
     .leaderboard-container {
         width: 100%;

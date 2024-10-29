@@ -3,42 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lane-Switching Car Game</title>
+    <title>Start Lane-Switching Car Game</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-color: #000; /* Set the background of the body to black */
+            background-color: #000;
             margin: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh; /* Full height for centering */
+            height: 100vh; 
         }
 
-        canvas {
-            background-color: #2d2d2d; /* Set canvas background to light gray */
-            display: block;
-            margin: 0 auto; /* Centers the canvas */
-            border: 2px solid #ffffff;
-            stroke-width: 2px; /* Add a border around the canvas */
+        img {
+            max-width: 30%; 
+            height: auto;
+            margin-bottom: 20px; 
         }
-        .game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center children horizontally */
-            justify-content: center; /* Center children vertically */
-            height: 00vh; /* Full height to center the game vertically */
-            background-color: #f0f0f0; /* Light grey background for the page */
+
+        button {
+            background-color: #ffffff; 
+            color: #000; 
+            font-size: 24px; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+        }
+
+        button:hover {
+            background-color: #f0f0f0; 
         }
     </style>
 </head>
 <body>
-    <div class="game-container"> <!-- New container for the game elements -->
-        <canvas id="gameCanvas" width="400" height="600"></canvas>
-        
-        
-    </div>
+    <img src="images/title.png" alt="Lane-Switching Car Game Title"> 
+    <button id="startButton">Start Game</button> 
 
-    <script src="game.js"></script>
+    <script>
+        document.getElementById("startButton").addEventListener("click", function() {
+            window.location.href = "game.html"; 
+        });
+    </script>
 </body>
 </html>

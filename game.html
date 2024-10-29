@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lane-Switching Car Game</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #000; 
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; 
+        }
+
+        canvas {
+            background-color: #2d2d2d; 
+            display: block;
+            margin: 0 auto; 
+            border: 2px solid #ffffff;
+            stroke-width: 2px; 
+        }
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            height: 00vh; 
+            background-color: #f0f0f0; 
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container"> 
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+        
+        
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

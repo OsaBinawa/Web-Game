@@ -34,30 +34,30 @@
         }
         displayLeaderboard();
 
-        // Handle score submission
+        
         document.getElementById("submitScore").addEventListener("click", () => {
             const playerName = document.getElementById("playerName").value || "Anonymous";
-            const score = sessionStorage.getItem("currentScore"); // Retrieve score from sessionStorage
-            console.log("Retrieved Score from sessionStorage:", score); // Log the retrieved score
+            const score = sessionStorage.getItem("currentScore"); 
+            console.log("Retrieved Score from sessionStorage:", score); 
 
-            // Convert score to a number, ensuring it's valid
-            const numericScore = Number(score); // Use Number() to convert the string to a number
+            
+            const numericScore = Number(score); 
 
-            if (!isNaN(numericScore)) { // Check if score is a valid number
+            if (!isNaN(numericScore)) { 
                 leaderboard.push({ name: playerName, score: numericScore });
                 leaderboard.sort((a, b) => b.score - a.score);
                 leaderboard = leaderboard.slice(0, 5);
                 localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
                 displayLeaderboard();
             } else {
-                console.error("Score is not a valid number"); // Log if score is invalid
+                console.error("Score is not a valid number"); 
                 alert("Error: Score is not available. Please try again.");
             }
         });
 
         // Handle retry button
         document.getElementById("retryGame").addEventListener("click", () => {
-            window.location.href = "index.html"; // Ensure this points to your game page
+            window.location.href = "game.html"; 
         });
     </script>
 </body>
