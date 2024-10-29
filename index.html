@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lane-Switching Car Game</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         canvas {
             background-color: #eee;
             display: block;
             margin: 0 auto;
         }
+        #leaderboard {
+            display: none;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="400" height="600"></canvas>
+    
+    <!-- Leaderboard section -->
+    <div id="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboardList"></ul>
+        <label for="playerName">Enter your name:</label>
+        <input type="text" id="playerName">
+        <button id="submitScore">Submit</button>
+    </div>
+
     <script src="game.js"></script>
 </body>
 </html>

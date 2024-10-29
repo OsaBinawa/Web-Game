@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <h2>Leaderboard</h2>
+    <ul id="leaderboardList"></ul>
+    <label for="playerName">Enter your name:</label>
+    <input type="text" id="playerName">
+    <button id="submitScore">Submit Score</button>
+    <button id="retryGame">Retry</button>
+
+
+    <script>
+        // Fetch leaderboard data from localStorage
+        let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+        // Display leaderboard
+        function displayLeaderboard() {
+            const leaderboardList = document.getElementById("leaderboardList");
+            leaderboardList.innerHTML = "";
+            leaderboard.forEach(entry => {
+                const li = document.createElement("li");
+                li.textContent = `${entry.name}: ${entry.score}`;
+                leaderboardList.appendChild(li);
+            });
+        }
+        displayLeaderboard();
+
+        // Handle score submission
+        document.getElementById("submitScore").addEventListener("click", () => {
+            const playerName = document.getElementById("playerName").value || "Anonymous";
+            const score = sessionStorage.getItem("currentScore"); // Retrieve score from sessionStorage
+            console.log("Retrieved Score from sessionStorage:", score); // Log the retrieved score
+
+            // Convert score to a number, ensuring it's valid
+            const numericScore = Number(score); // Use Number() to convert the string to a number
+
+            if (!isNaN(numericScore)) { // Check if score is a valid number
+                leaderboard.push({ name: playerName, score: numericScore });
+                leaderboard.sort((a, b) => b.score - a.score);
+                leaderboard = leaderboard.slice(0, 5);
+                localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+                displayLeaderboard();
+            } else {
+                console.error("Score is not a valid number"); // Log if score is invalid
+                alert("Error: Score is not available. Please try again.");
+            }
+        });
+
+        // Handle retry button
+        document.getElementById("retryGame").addEventListener("click", () => {
+            window.location.href = "index.html"; // Ensure this points to your game page
+        });
+    </script>
+</body>
+</html>
