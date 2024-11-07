@@ -106,6 +106,30 @@ button {
     width: 100%; 
 }
 
+#controls {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#leftButton, #rightButton {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#leftButton:hover, #rightButton:hover {
+    background-color: #555;
+}
+
+
 button:hover {
     background-color: #0056b3;
 }

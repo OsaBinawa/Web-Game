@@ -222,11 +222,19 @@ document.addEventListener("keydown", (event) => {
     const touchX = event.touches[0].clientX;
 
     // If the touch is on the left half of the screen
-    if (touchX < canvas.width / 2 && playerLane > 0) {
-        playerLane--;  // Move left
+    
+});
+const leftButton = document.getElementById("leftButton");
+const rightButton = document.getElementById("rightButton");
+
+leftButton.addEventListener("click", () => {
+    if (playerLane > 0) {
+        playerLane--; // Move the car to the left lane
     }
-    // If the touch is on the right half of the screen
-    else if (touchX >= canvas.width / 2 && playerLane < 2) {
-        playerLane++;  // Move right
+});
+
+rightButton.addEventListener("click", () => {
+    if (playerLane < 2) {
+        playerLane++; // Move the car to the right lane
     }
 });
