@@ -219,4 +219,14 @@ document.addEventListener("keydown", (event) => {
     } else if (event.code === "KeyD" && playerLane < 2) {
         playerLane++;
     }
+    const touchX = event.touches[0].clientX;
+
+    // If the touch is on the left half of the screen
+    if (touchX < canvas.width / 2 && playerLane > 0) {
+        playerLane--;  // Move left
+    }
+    // If the touch is on the right half of the screen
+    else if (touchX >= canvas.width / 2 && playerLane < 2) {
+        playerLane++;  // Move right
+    }
 });
